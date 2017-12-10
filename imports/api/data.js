@@ -1,7 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import SpotifyWebApi from ''
 
 function checkTokenRefreshed(response, api) {
   if (response.error && response.error.statusCode === 401) {
@@ -14,7 +13,9 @@ function checkTokenRefreshed(response, api) {
 
 Meteor.methods({
   'getTopSongs'() {
-    var spotifyApi = new SpotifyWebApi();
+    let spotifyApi = new SpotifyWebApi();
+
+    // let response = 
 
   },
   'typeaheadTracks'(query, options) {
@@ -28,8 +29,8 @@ Meteor.methods({
     }
 
     // Spotify call.
-    var spotifyApi = new SpotifyWebApi();
-    var response = spotifyApi.searchTracks(query, { limit: options.limit });
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.searchTracks(query, { limit: options.limit });
 
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.searchTracks(query, { limit: options.limit });
@@ -39,15 +40,15 @@ Meteor.methods({
   },
   'createPlaylist'(selectedTracks, playlistName) {
     if (!selectedTracks || !playlistName || selectedTracks.length > 20) throw new Error("No tracks or playlist name specified");
-    var spotifyApi = new SpotifyWebApi();
-    var response = spotifyApi.createPlaylist(Meteor.user().services.spotify.id, playlistName, { public: false });
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.createPlaylist(Meteor.user().services.spotify.id, playlistName, { public: false });
     
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.createPlaylist(Meteor.user().services.spotify.id, playlistName, { public: false });
     }
 
     // Put songs into the playlist.
-    var uris = selectedTracks.map(function(track) {
+    let uris = selectedTracks.map(function(track) {
       return track.uri;
     });
     spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, response.data.body.id, uris, {});
@@ -55,18 +56,19 @@ Meteor.methods({
     return response.data.body;
   },
   'getFollowerCount'() {
-    var spotifyApi = new SpotifyWebApi();
-    var response = spotifyApi.getMe();
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.getMe();
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.getMySavedTracks({});
     }
 
-    return response.data.body.followers.total;
+    return response;
+    // return response.data.body.followers.total;
 
   },
   'getSavedTracksCount'() {
-    var spotifyApi = new SpotifyWebApi();
-    var response = spotifyApi.getMySavedTracks({});
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.getMySavedTracks({});
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.getMySavedTracks({});
     }
@@ -74,8 +76,8 @@ Meteor.methods({
     return response.data.body.total;
   },
   'getSavedPlaylists'() {
-    var spotifyApi = new SpotifyWebApi();
-    var response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {});
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {});
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {});
     }

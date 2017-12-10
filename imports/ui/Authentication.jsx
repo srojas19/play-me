@@ -7,6 +7,12 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.login = this.login.bind(this);
+    this.test = this.test.bind(this);
+  }
+
+  test() {
+    console.log('test')
+    console.log(Meteor.call('getFollowerCount'));
   }
 
   login() {
@@ -23,6 +29,7 @@ export default class App extends Component {
     return (
       <div>
         {Meteor.user()==null ? <button onClick={this.login}>Click me!</button> : <p>{Meteor.user()._id}</p>}
+        <button onClick={this.test}>Test</button>
       </div>
        
     );
