@@ -5,8 +5,8 @@ Meteor.startup(() => {
     { "service": "spotify" },
     {
       $set: {
-        "clientId": "llenar con variable entorno",
-        "secret": "llenar con variable entorno"
+        "clientId": process.env.CLIENT_ID,
+        "secret": process.env.SECRET
       }
     },
     { upsert: true }
