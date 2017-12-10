@@ -5,8 +5,8 @@ Meteor.startup(() => {
     { "service": "spotify" },
     {
       $set: {
-        "clientId": process.env.CLIENT_ID,
-        "secret": process.env.SECRET
+        "clientId": process.env.SPOTIFY_CLIENTID,
+        "secret": process.env.SPOTIFY_SECRET
       }
     },
     { upsert: true }
