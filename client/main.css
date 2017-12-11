@@ -1,1 +1,21 @@
 /* CSS declarations go here */
+/* .container-fluid {
+    display: block;
+    height: 90vh;
+} */
+
+#tracks {
+    display: block;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+#artists {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+img.artist-image-large {
+    height: 100px;
+    width: 100px;
+}

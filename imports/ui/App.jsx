@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './NavBar.jsx';
 import Home from './Home.jsx'
 import PlaylistPage from './PlaylistPage.jsx'
-import Favorites from './Favorites.jsx'
+import Favorites from './FavoritesPage/Favorites.jsx'
 import Following from './Following.jsx'
 
 export default class App extends Component {
@@ -25,14 +25,17 @@ export default class App extends Component {
 
     switch (currentPage) {
       case 'home':
-        pageToRender = <Home />
+        pageToRender = <Home />;
         break;
       case 'playlist':
-        pageToRender = <PlaylistPage />
+        pageToRender = <PlaylistPage />;
+        break;
       case 'favorites':
-        pageToRender = <Favorites />
+        pageToRender = <Favorites />;
+        break;
       case 'following':
-        pageToRender = <Following />
+        pageToRender = <Following />;
+        break;
       default:
         break;
     }
@@ -40,7 +43,9 @@ export default class App extends Component {
     return (
       <div>
         <NavBar onAction = {this.onAction} />
-        {currentPage}
+        <div className="container-fluid my-2">
+          {pageToRender}
+        </div>
       </div>
     );
   }

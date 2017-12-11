@@ -27,8 +27,7 @@ export default class Authentication extends Component {
       <li className='nav-item'>
         { this.state.authenticated ? 
           <a className='nav-link' href='#' onClick={this.login}>Log in</a> :
-          // <p>{Meteor.user().profile.display_name}</p> 
-          'Logged in'
+          <a className='nav-link'>Logged in</a>
         }
       </li>
        

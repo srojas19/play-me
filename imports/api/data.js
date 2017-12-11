@@ -16,25 +16,17 @@ Meteor.methods({
     let spotifyApi = new SpotifyWebApi(),
         response;
     spotifyApi.refreshAndUpdateAccessToken();
-    spotifyApi.getMyTopArtists('',
-      (err, data) => {
-        if(err) console.error(err);
-        else {
-          return data.body.items;
-        }
-      })
+    const syncFunction = Meteor.wrapAsync(spotifyApi.getMyTopArtists, spotifyApi);    
+    response = syncFunction('');
+    return response.body;
   },
   'getMyTopTracks'() {
     let spotifyApi = new SpotifyWebApi(),
         response;
     spotifyApi.refreshAndUpdateAccessToken();
-    spotifyApi.getMyTopTracks('',
-      (err, data) => {
-        if(err) console.error(err);
-        else {
-          return data.body.items;
-        }
-      })
+    const syncFunction = Meteor.wrapAsync(spotifyApi.getMyTopTracks, spotifyApi);
+    response = syncFunction('');
+    return response.body;
   },
   'getAlbum'(albumId) {
     let spotifyApi = new SpotifyWebApi();
@@ -118,3 +110,4 @@ Meteor.methods({
     return response.data.body;
   }
 });
+
