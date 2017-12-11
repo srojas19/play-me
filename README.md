@@ -7,9 +7,9 @@ Web app que expone algunas funcionalidades del API de Spotify, como:
 
 **Web development 2017-1**  
 **Universidad de los Andes**  
-**Pagina del curso:**http://johnguerra.co/classes/webDevelopment_fall_2017/  
+[**Pagina del curso**](http://johnguerra.co/classes/webDevelopment_fall_2017/)  
 
-##Integrantes
+## Integrantes
 
 - Brandon Bohorquez
 - Santiago Rojas Herrera
