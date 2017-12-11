@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar.jsx';
+import Home from './Home.jsx'
+import PlaylistPage from './PlaylistPage.jsx'
+import Favorites from './Favorites.jsx'
+import Following from './Following.jsx'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,14 +19,13 @@ export default class App extends Component {
     this.setState({currentPage: page});
   }
 
-
   render() {
     let currentPage = this.state.currentPage;
     let pageToRender = null;
 
     switch (currentPage) {
       case 'home':
-        pageToRender = <h1>home</h1>; 
+        pageToRender = <Home />
         break;
       case 'playlist':
         pageToRender = <PlaylistPage />
