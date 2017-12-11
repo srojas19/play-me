@@ -3,7 +3,7 @@ import NavBar from './NavBar.jsx';
 import Home from './Home.jsx'
 import PlaylistPage from './PlaylistPage.jsx'
 import Favorites from './FavoritesPage/Favorites.jsx'
-import Following from './Following.jsx'
+import FollowersPage from './FollowersPage/FollowersPage.jsx'
 
 export default class App extends Component {
   constructor(props) {
@@ -33,8 +33,8 @@ export default class App extends Component {
       case 'favorites':
         pageToRender = <Favorites />;
         break;
-      case 'following':
-        pageToRender = <Following />;
+      case 'followers':
+        pageToRender = <FollowersPage />;
         break;
       default:
         break;

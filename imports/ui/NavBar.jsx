@@ -31,7 +31,7 @@ class NavBar extends Component {
         <a className="nav-link" onClick={(e) => this.onSelection('favorites')} href="#">Favorites</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={(e) => this.onSelection('following')} href="#">Following</a>
+        <a className="nav-link" onClick={(e) => this.onSelection('followers')} href="#">Followers</a>
       </li>
     </ul>
     <ul className="navbar-nav my-2 my-lg-0">

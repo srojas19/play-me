@@ -67,7 +67,6 @@ Meteor.methods({
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.getMySavedTracks({});
     }
-
     return response.data.body.total;
   },
   'getSavedPlaylists'() {
@@ -76,7 +75,6 @@ Meteor.methods({
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {});
     }
-
     return response.data.body;
   },
   'searchAlbums'(query, options) {
@@ -86,7 +84,6 @@ Meteor.methods({
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.searchAlbums(query, options);
     }
-    console.log(response.data.body);
     return response.data.body;
   },
   'searchArtists'(query, options) {
@@ -96,7 +93,6 @@ Meteor.methods({
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.searchArtists(query, options);
     }
-    console.log(response.data.body);
     return response.data.body;
   },
   'searchSongs'(query, options) {
@@ -106,8 +102,17 @@ Meteor.methods({
     if (checkTokenRefreshed(response, spotifyApi)) {
       response = spotifyApi.searchSongs(query, options);
     }
-    console.log(response.data.body);
     return response.data.body;
+  },
+  'getFollowing'() {
+    options={limit: 50}
+    let spotifyApi = new SpotifyWebApi();
+    let response = spotifyApi.getFollowedArtists(options);
+    if (checkTokenRefreshed(response, spotifyApi)) {
+      response = spotifyApi.getFollowedArtists(options);
+    }
+    console.log(response.data.body);
+    return response.data.body.artists;
   }
 });
 
