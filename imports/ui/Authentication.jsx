@@ -25,7 +25,7 @@ export default class Authentication extends Component {
   render() {
     return (
       <li className='nav-item'>
-        { this.state.authenticated ? 
+        { !this.state.authenticated ? 
           <a className='nav-link' href='#' onClick={this.login}>Log in</a> :
           <a className='nav-link'>Logged in</a>
         }
